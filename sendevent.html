@@ -3,29 +3,37 @@
 <head>
     <script type="text/javascript">
         let urlParams = new URLSearchParams(window.location.search);
+
         let resultIndicator = urlParams.get('resultIndicator')
         let sessionVersion = urlParams.get('sessionVersion')
-        const fetch = require('node-fetch');
-        var myHeaders = new fetch.Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Accept", "application/json");
+        console.log(resultIndicator, "resultindicator")
+        console.log(sessionVersion, "sessionversion")
+        var iframe = document.getElementById('ymIframe');
+       // var myHeaders = new Headers();
+        // myHeaders.append("Content-Type", "application/json");
+        // myHeaders.append("Accept", "application/json");
+        // myHeaders.append("x-auth-token", "7cb0718f9ce2890006f4c9d8adfcc8f058585591ba28589e6f4a4de94e218082");
+        // myHeaders.append("Access-Control-Allow-Origin", "*")
 
-        var raw = JSON.stringify({
-            "resultIndicator": resultIndicator,
-            "sessionVersion": sessionVersion
-        });
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-
-        fetch("https://app.yellowmessenger.com/integrations/sendevent/canary/a9c98443da93baa4b4ae9789d771", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
+        // var raw = JSON.stringify({
+        //     "resultIndicator": resultIndicator,
+        //     "sessionVersion": sessionVersion
+        // });
+        // console.log(raw,"raw")
+        // var requestOptions = {
+        //     method: 'POST',
+        //     headers: myHeaders,
+        //     body: raw,
+        //     redirect: 'follow'
+        // };
+        // console.log(requestOptions,"requestOptions")
+        // fetch("https://app.yellowmessenger.com/integrations/sendevent/canary/a9c98443da93baa4b4ae9789d771", requestOptions)
+        //     .then(response => response.text())
+        //     .then(result => console.log(result))
+        //     .catch(error => console.log('error', error));
+        let url  = "https://app.yellowmessenger.com/integrations/sendevent/canary/a9c98443da93baa4b4ae9789d771?resultIndicator="+resultIndicator+"&sessionVersion="+sessionVersion+"&v=c8ec0d48aa7f"
+        fetch(url)
+        console.log(url,"after fetch")
     </script>
     <script type="text/javascript">
         window.location.href = "https://www.fashionbug.lk/";
