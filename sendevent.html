@@ -3,41 +3,40 @@
 <head>
 
     <script type="text/javascript">
-        function sendEvent() {
-            let urlParams = new URLSearchParams(window.location.search);
-            let resultIndicator = urlParams.get('resultIndicator')
-            let sessionVersion = urlParams.get('sessionVersion')
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Accept", "application/json");
 
-            // var raw = JSON.stringify({
-            //     "resultIndicator": resultIndicator,
-            //     "sessionVersion": sessionVersion
-            // });
-            var raw = JSON.stringify({
-                "resultIndicator": "",
-                "sessionVersion": ""
-            });
+        let urlParams = new URLSearchParams(window.location.search);
+        let resultIndicator = urlParams.get('resultIndicator')
+        let sessionVersion = urlParams.get('sessionVersion')
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Accept", "application/json");
 
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
+        var raw = JSON.stringify({
+            "resultIndicator": resultIndicator,
+            "sessionVersion": sessionVersion
+        });
+//         var raw = JSON.stringify({
+//             "resultIndicator": "",
+//             "sessionVersion": ""
+//         });
 
-            fetch("https://app.yellowmessenger.com/integrations/sendevent/canary/a9c98443da93baa4b4ae9789d771", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-        }
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://app.yellowmessenger.com/integrations/sendevent/canary/a9c98443da93baa4b4ae9789d771", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
     </script>
     <script type="text/javascript">
         window.location.href = "https://www.fashionbug.lk/";
     </script>
 </head>
 
-<body onload="sendEvent()"></body>
 
 </html>
