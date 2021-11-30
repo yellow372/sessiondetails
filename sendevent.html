@@ -1,13 +1,12 @@
 <html>
 
 <head>
-
     <script type="text/javascript">
-
         let urlParams = new URLSearchParams(window.location.search);
         let resultIndicator = urlParams.get('resultIndicator')
         let sessionVersion = urlParams.get('sessionVersion')
-        var myHeaders = new Headers();
+        const fetch = require('node-fetch');
+        var myHeaders = new fetch.Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Accept", "application/json");
 
@@ -15,11 +14,6 @@
             "resultIndicator": resultIndicator,
             "sessionVersion": sessionVersion
         });
-//         var raw = JSON.stringify({
-//             "resultIndicator": "",
-//             "sessionVersion": ""
-//         });
-
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
@@ -37,6 +31,5 @@
         window.location.href = "https://www.fashionbug.lk/";
     </script>
 </head>
-
 
 </html>
