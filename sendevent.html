@@ -1,40 +1,36 @@
 <html>
 
 <head>
-    <script src="https://cbcmpgs.gateway.mastercard.com/checkout/version/57/checkout.js" data-error="errorCallback"
-        data-cancel="cancelCallback">
-        </script>
+
     <script type="text/javascript">
-        function errorCallback(error) {
-            console.log(JSON.stringify(error));
-        }
-        function cancelCallback() {
-            console.log('Payment cancelled');
-        }
+
         let urlParams = new URLSearchParams(window.location.search);
-        let session_ID = urlParams.get('session')
-        Checkout.configure({
-            session: {
-                id: session_ID
-            },
-            interaction: {
-                displayControl: { // you may change these settings as you prefer
-                    billingAddress: 'HIDE',
-                    customerEmail: 'HIDE',
-                    orderSummary: 'SHOW',
-                    shipping: 'HIDE'
-                }
-            }
+        let resultIndicator = urlParams.get('resultIndicator')
+        let sessionVersion = urlParams.get('sessionVersion')
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Accept", "application/json");
+
+        var raw = JSON.stringify({
+            "resultIndicator": resultIndicator,
+            "sessionVersion": sessionVersion
         });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://app.yellowmessenger.com/integrations/sendevent/canary/a9c98443da93baa4b4ae9789d771", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    </script>
+    <script type="text/javascript">
+        window.location.href = "https://www.fashionbug.lk/";
     </script>
 </head>
-
-<!--<body onload="Checkout.showPaymentPage();"></body>
-Click one of below buttons to start payment process…
-  <input type="button" value="Pay with Lightbox" onclick="Checkout.showLightbox();" />  
-   
-    <input type="button" value="Pay with Payment Page" onclick="Checkout.showPaymentPage();" />
-</body> -->
-<body onload="Checkout.showPaymentPage();"></body>
 
 </html>
